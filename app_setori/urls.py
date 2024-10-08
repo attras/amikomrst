@@ -3,6 +3,13 @@ from django.urls import path,include,re_path
 
 from .views import *
 from .views import beranda
+from .views import berita
+from .views import data_pokok
+from .views import faq
+from .views import kontak
+from .views import layanan
+from .views import potensi
+from .views import tentang
 
 app_name = 'app_setori'
 
