@@ -1,0 +1,25 @@
+{% extends 'admin/base_layout/index.html' %}
+{% block css %} {% endblock css %}
+{% block main %}
+
+<h2 class="mb-4">User Admin Table</h2>
+
+<!-- Edit User Modal -->
+
+            <div class="">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label  class="form-label"></label>
+                        <input type="text" name="pertanyaan" class="form-control" value="{{ edit_faq.pertanyaan }}" />
+                    </div>
+                    <div class="mb-3"></div>
+                        <label  class="form-label">{{ edit_faq.jawaban }}</label>
+                        <input type="text" name="jawaban" class="form-control"  value="{{ edit_faq.pertanyaan }}" />
+                    </div>
+                    <button type="submit" class="btn btn-warning">Update </button>
+                </form>
+            </div>
+
+
+{% endblock main %}

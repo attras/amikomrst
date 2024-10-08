@@ -1,0 +1,29 @@
+{% extends 'admin/base_layout/index.html' %}
+{% block css %} {% endblock css %}
+{% block main %}
+<div class="container mt-5">
+    <h2>Form Input</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="logo" class="form-label">Logo</label>
+        <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+      </div>
+  
+      <div class="mb-3">
+        <label for="foto" class="form-label">Background Photo</label>
+        <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+      </div>
+  
+      <div class="mb-3">
+        <label for="judul" class="form-label">Title</label>
+        <input type="text" class="form-control" id="judul" name="judul" maxlength="255" placeholder="Enter title">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
+
+{% endblock main %}
