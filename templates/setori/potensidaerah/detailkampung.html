@@ -70,33 +70,69 @@
         .content-container {
             text-align: center;
         }
-    </style>
+        .tab-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Warna background untuk container tab */
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan untuk container tab */
+        }
+
+        .tab-controls .tab-link {
+            text-decoration: none;
+            color: #495057; /* Warna teks */
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease; /* Efek transisi untuk interaksi */
+        }
+
+        .tab-controls .tab-link:hover {
+            background-color: #e9ecef; /* Warna background saat hover */
+            color: #212529; /* Warna teks saat hover */
+        }
+
+        .tab-controls .tab-link.active {
+            background-color: #367588; /* Warna background untuk tab aktif */
+            color: #ffffff; /* Warna teks untuk tab aktif */
+        }
+
+        .tab-controls .tab-link.active:after {
+            content: '';
+            display: block;
+            margin: auto;
+            height: 3px;
+            width: 50%;
+            background: #ffffff; /* Garis di bawah tab aktif */
+        }
+
 </style> 
 {% endblock css %} 
 
 {% block main %}  
-<div class="container-fluid">
-    <!-- Section Title -->
-    <div class="body">
-        <div class="page-header" style="position: relative; margin-bottom: 0; overflow: hidden;">
-            <img src="{% static 'img/header/atasan.jpg' %}" alt="Header Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-            <div class="container p-relative z-index-1 py-2">
-                <div class="row mh-200px mh-lg-300px align-items-center py-4">
-                    <div class="col">
-                        <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
-                            <h1 class="text-9 text-lg-12 text-color-light font-weight-semibold line-height-1 mb-2">Detail Potensi</h1>
-                        </div>
-                        <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
-                            <ul class="breadcrumb d-flex text-3-5 font-weight-semi-bold pb-2 mb-3">
-                                <li><a href="demo-accounting-1.html" class="text-light text-decoration-none">Potensi</a></li>
-                                <li class="active text-color-light opacity-7">Detail Potensi</li>
-                            </ul>
-                        </div>
+<div class="body">
+    <div class="page-header" style="position: relative; margin-bottom: 0; overflow: hidden;">
+        <img src="{% static 'img/header/atasan.jpg' %}" alt="Header Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <div class="container p-relative z-index-1 py-2">
+            <div class="row mh-200px mh-lg-300px align-items-center py-4">
+                <div class="col">
+                    <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
+                        <h1 class="text-9 text-lg-12 text-color-light font-weight-semibold line-height-1 mb-2">Potensi Daerah</h1>
+                    </div>
+                    <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
+                        <ul class="breadcrumb d-flex text-3-5 font-weight-semi-bold pb-2 mb-3">
+                            <li><a href="demo-accounting-1.html" class="text-light text-decoration-none">Beranda</a></li>
+                            <li class="active text-color-light opacity-7">Potensi Daerah</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Data deskripsi -->
     <div class="row content">
@@ -105,7 +141,9 @@
                 <div class="row data-section">
                     <div class="col-12">
                         <div class="card">
-                            <img src="URL_GAMBAR_PERTAMA" class="card-img-top" alt="Image of Supiori Selatan">
+                            <div style="display: flex; justify-content: center;">
+                                <img src="{% static 'img/potensi/detail_1.jpg' %}" class="card-img-top" style="width: 80%; height: auto;">
+                            </div>
                             <div class="card-body">
                                 <h3>Informasi</h3>
                                 <div class="content-container">
@@ -124,7 +162,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3>Maps</h3>
-                                <div class="map-container">
+                                <div class="map-container" style="height: 400px;">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.47268893396!2d135.72742674436404!3d-0.7541726980906849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x680171f324b75afb%3A0xc3480285d5705e8e!2sDinas%20Kesehatan!5e0!3m2!1sid!2sid!4v1728291617820!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
@@ -139,10 +177,10 @@
             <div id="tab-group-1" class="card bg-transparent mb-0">
                 <div class="rounded-m overflow-hidden mx-3">
                     <div class="tab-controls tabs-large tabs-rounded" data-highlight="bg-dark-dark">
-                        <a href="#" class="active" data-bs-toggle="collapse" data-bs-target="#tab-1">Profil</a>
-                        <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2">Data Umum</a>
+                        <a href="#" class="tab-link active" id="tab-1-link" data-bs-toggle="collapse" data-bs-target="#tab-1">Profil</a>
+                        <a href="#" class="tab-link" id="tab-2-link" data-bs-toggle="collapse" data-bs-target="#tab-2">Data Umum</a>
                     </div>
-                </div>
+                </div>                               
         
                 <div data-bs-parent="#tab-group-1" class="collapse show" id="tab-1">     
                     <!-- Section Title -->
@@ -165,16 +203,16 @@
                                     Misi
                                 </div>
                                 <div class="card-body">
-                                    1. Peningkatan Kesejahteraan Masyarakat:
+                                    <p>1. Peningkatan Kesejahteraan Masyarakat:</p>
                                     Meningkatkan akses terhadap pendidikan, kesehatan, dan lapangan kerja bagi seluruh warga kampung.
                                     Mengembangkan program-program pemberdayaan ekonomi berbasis potensi lokal untuk meningkatkan pendapatan masyarakat.
-                                    2. Pengembangan Infrastruktur dan Lingkungan:
+                                    <p>2. Pengembangan Infrastruktur dan Lingkungan:</p>
                                     Meningkatkan kualitas dan aksesibilitas infrastruktur kampung, termasuk jalan, air bersih, dan fasilitas umum lainnya.
                                     Menjaga kelestarian lingkungan dengan mengimplementasikan program penghijauan dan pengelolaan sampah yang efektif.
-                                    3. Pelestarian Budaya dan Kearifan Lokal:
+                                    <p>3. Pelestarian Budaya dan Kearifan Lokal:</p>
                                     Melestarikan dan mengembangkan seni budaya lokal melalui berbagai kegiatan dan festival budaya.
                                     Mendorong partisipasi aktif masyarakat dalam pelestarian nilai-nilai kearifan lokal.
-                                    4. Peningkatan Kualitas Pelayanan Publik:
+                                    <p>4. Peningkatan Kualitas Pelayanan Publik:</p>
                                     Meningkatkan kualitas pelayanan publik dengan memberikan pelayanan yang cepat, tepat, dan transparan.
                                     Mendorong partisipasi masyarakat dalam proses pengambilan keputusan dan pembangunan kampung.
         
@@ -268,9 +306,8 @@
                 </div>
             </div>
         </div>
-        
-        
     </div>
+</div>
 
     <!-- Table Section -->
     <div class="row content">
@@ -319,6 +356,29 @@
             </table>
         </div>
     </div>
-</div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const tabLinks = document.querySelectorAll('.tab-controls .tab-link');
+
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            // Remove active class from all tab links
+            tabLinks.forEach(tab => tab.classList.remove('active'));
+            // Add active class to the clicked tab link
+            this.classList.add('active');
+
+            // Hide all tab content
+            document.querySelectorAll('.tab-content .collapse').forEach(tabContent => {
+                tabContent.classList.remove('show');
+            });
+
+            // Show the corresponding tab content
+            const target = this.getAttribute('data-bs-target');
+            document.querySelector(target).classList.add('show');
+        });
+    });
+});
+</script>
 {% endblock main %} 
